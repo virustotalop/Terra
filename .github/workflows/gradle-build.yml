@@ -7,7 +7,9 @@
 
 name: Gradle Build
 
-on: [ pull_request ]
+on:
+  push:
+    branches: [ "dev/1.21.4" ]
 
 jobs:
   build:
@@ -45,3 +47,8 @@ jobs:
           properties: |
             kotlin.js.compiler=ir
             kotlin.parallel.tasks.in.project=true
+      - uses: actions/upload-artifact@v3
+        name: Upload artifact
+        with:
+          name: terra
+          path: platforms/bukkit/build/libs/**            
